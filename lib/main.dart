@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:popover/popover.dart';
 
 void main() => runApp(App());
 
@@ -32,52 +33,61 @@ class ManageDocuments extends StatelessWidget {
           ),
           centerTitle: true,
           actions: [
-            IconButton(
-              icon: Icon(
-                Icons.add,
-                color: Colors.black,
-              ),
-              onPressed: () => showCupertinoModalPopup<void>(
-                context: context,
-                builder: (context) => CupertinoActionSheet(
-                  title: const Text('Title'),
-                  message: const Text('Message'),
-                  actions: [
-                    CupertinoActionSheetAction(
-                      child: const Text('Action One'),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    CupertinoActionSheetAction(
-                      child: const Text('Action Two'),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    )
-                  ],
-                ),
-              ),
-
-              // onPressed: () => showPopover(
-              //   context: context,
-              //   bodyBuilder: (context) => SafeArea(
-              //     child: Container(
-              //       color: Colors.red,
-              //       child: Column(
-              //         children: [
-              //           Text('Text One'),
-              //           Text('Text Two'),
-              //           Text('Text Three'),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ),
+            IconButtonPopover(),
           ],
         ),
       ],
+    );
+  }
+}
+
+class IconButtonPopover extends StatelessWidget {
+  const IconButtonPopover({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        Icons.add,
+        color: Colors.black,
+      ),
+      // onPressed: () => showCupertinoModalPopup<void>(
+      //   context: context,
+      //   builder: (context) => CupertinoActionSheet(
+      //     title: const Text('Title'),
+      //     message: const Text('Message'),
+      //     actions: [
+      //       CupertinoActionSheetAction(
+      //         child: const Text('Action One'),
+      //         onPressed: () {
+      //           Navigator.pop(context);
+      //         },
+      //       ),
+      //       CupertinoActionSheetAction(
+      //         child: const Text('Action Two'),
+      //         onPressed: () {
+      //           Navigator.pop(context);
+      //         },
+      //       )
+      //     ],
+      //   ),
+      // ),
+
+      onPressed: () => showPopover(
+        context: context,
+        bodyBuilder: (context) => SafeArea(
+          child: Container(
+            color: Colors.red,
+            child: Column(
+              children: [
+                Text('Text One'),
+                Text('Text Two'),
+                Text('Text Three'),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
